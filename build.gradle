@@ -1,0 +1,43 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.0'
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://maven.scijava.org/content/repositories/public/'
+    }
+}
+
+dependencies {
+    implementation 'com.github.ThexXTURBOXx.dex2jar:dex-tools:v59'
+
+    implementation('org.soot-oss:sootup.core:1.1.2'){
+        exclude group: 'com.github.ThexXTURBOXx.dex2jar', module: 'dex-tools'
+    }
+    implementation('org.soot-oss:sootup.java.core:1.1.2'){
+        exclude group: 'com.github.ThexXTURBOXx.dex2jar', module: 'dex-tools'
+    }
+    implementation('org.soot-oss:sootup.java.sourcecode:1.1.2'){
+        exclude group: 'com.github.ThexXTURBOXx.dex2jar', module: 'dex-tools'
+    }
+    implementation('org.soot-oss:sootup.java.bytecode:1.1.2'){
+        exclude group: 'com.github.ThexXTURBOXx.dex2jar', module: 'dex-tools'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+
+application {
+    mainClassName = 'MainKt'
+}
